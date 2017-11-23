@@ -14,6 +14,7 @@
   rest should be named after its module name.
 
 */
+'use strict'
 var express = require("express")
   , app = express()
   , http = require("http").createServer(app)
@@ -34,10 +35,7 @@ var participants = [];
 /* Server config */
 
 //Server's IP address
-app.set("ipaddr", "192.168.43.167");
-
-//Server's port number
-app.set("port", 8080);
+app.set('port', (process.env.PORT || 5000))
 
 //Specify the views folder
 app.set("views", __dirname + "/views");
@@ -119,6 +117,6 @@ io.on("connection", function(socket){
 });
 
 //Start the http server at port and IP defined before
-http.listen(app.get("port"), app.get("ipaddr"), function() {
-  console.log("Server up and running. Go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+http.listen(app.get("port"), function() {
+  //console.log("Server up and running. Go to http://" + app.get("ipaddr") + ":" + app.get("port"));
 });
